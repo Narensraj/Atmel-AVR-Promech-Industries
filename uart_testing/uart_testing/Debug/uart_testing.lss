@@ -1,0 +1,215 @@
+
+uart_testing.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000154  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000000e0  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00800100  00800100  00000154  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000154  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000184  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000040  00000000  00000000  000001c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000081f  00000000  00000000  00000204  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000729  00000000  00000000  00000a23  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000002ff  00000000  00000000  0000114c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000064  00000000  00000000  0000144c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003cc  00000000  00000000  000014b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000063  00000000  00000000  0000187c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000030  00000000  00000000  000018df  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	28 c0       	rjmp	.+80     	; 0x54 <__bad_interrupt>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	24 c0       	rjmp	.+72     	; 0x54 <__bad_interrupt>
+   c:	23 c0       	rjmp	.+70     	; 0x54 <__bad_interrupt>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	1f c0       	rjmp	.+62     	; 0x54 <__bad_interrupt>
+  16:	1e c0       	rjmp	.+60     	; 0x54 <__bad_interrupt>
+  18:	1d c0       	rjmp	.+58     	; 0x54 <__bad_interrupt>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+  1e:	1a c0       	rjmp	.+52     	; 0x54 <__bad_interrupt>
+  20:	19 c0       	rjmp	.+50     	; 0x54 <__bad_interrupt>
+  22:	18 c0       	rjmp	.+48     	; 0x54 <__bad_interrupt>
+  24:	17 c0       	rjmp	.+46     	; 0x54 <__bad_interrupt>
+  26:	16 c0       	rjmp	.+44     	; 0x54 <__bad_interrupt>
+  28:	15 c0       	rjmp	.+42     	; 0x54 <__bad_interrupt>
+  2a:	14 c0       	rjmp	.+40     	; 0x54 <__bad_interrupt>
+  2c:	13 c0       	rjmp	.+38     	; 0x54 <__bad_interrupt>
+  2e:	12 c0       	rjmp	.+36     	; 0x54 <__bad_interrupt>
+  30:	11 c0       	rjmp	.+34     	; 0x54 <__bad_interrupt>
+  32:	10 c0       	rjmp	.+32     	; 0x54 <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d4 e0       	ldi	r29, 0x04	; 4
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_clear_bss>:
+  40:	21 e0       	ldi	r18, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a4 30       	cpi	r26, 0x04	; 4
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	30 d0       	rcall	.+96     	; 0xb2 <main>
+  52:	44 c0       	rjmp	.+136    	; 0xdc <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <adc_init>:
+#define MYUBRR F_CPU/16/BAUD-1
+volatile int adcValue;
+void adc_init()
+{
+	// AREF = AVcc
+	ADMUX = (1<<REFS0);
+  56:	80 e4       	ldi	r24, 0x40	; 64
+  58:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+	
+	// ADC Enable and prescaler of 128
+	// 16000000/128 = 125000
+	ADCSRA = (1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
+  5c:	87 e8       	ldi	r24, 0x87	; 135
+  5e:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__DATA_REGION_ORIGIN__+0x1a>
+  62:	08 95       	ret
+
+00000064 <adc_read>:
+}
+uint16_t adc_read(uint8_t ch)
+{
+	ch &= 0b00000001;  
+	ADMUX = (ADMUX & 0xF8)|ch; 
+  64:	ec e7       	ldi	r30, 0x7C	; 124
+  66:	f0 e0       	ldi	r31, 0x00	; 0
+  68:	90 81       	ld	r25, Z
+  6a:	98 7f       	andi	r25, 0xF8	; 248
+  6c:	81 70       	andi	r24, 0x01	; 1
+  6e:	89 2b       	or	r24, r25
+  70:	80 83       	st	Z, r24
+
+	ADCSRA |= (1<<ADSC);
+  72:	ea e7       	ldi	r30, 0x7A	; 122
+  74:	f0 e0       	ldi	r31, 0x00	; 0
+  76:	80 81       	ld	r24, Z
+  78:	80 64       	ori	r24, 0x40	; 64
+  7a:	80 83       	st	Z, r24
+	while(ADCSRA & (1<<ADSC));
+  7c:	80 81       	ld	r24, Z
+  7e:	86 fd       	sbrc	r24, 6
+  80:	fd cf       	rjmp	.-6      	; 0x7c <adc_read+0x18>
+	
+	return (ADC);
+  82:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
+  86:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
+}
+  8a:	08 95       	ret
+
+0000008c <USART_Init>:
+void USART_Init( unsigned int ubrr)
+{
+	/*Set baud rate */
+	UBRR0H = (unsigned char)(ubrr>>8);
+  8c:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+	UBRR0L = (unsigned char)ubrr;
+  90:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+	//Enable receiver and transmitter */
+	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+  94:	88 e1       	ldi	r24, 0x18	; 24
+  96:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+	/* Set frame format: 8data, 2stop bit */
+	UCSR0C = (1<<USBS0)|(3<<UCSZ00);
+  9a:	8e e0       	ldi	r24, 0x0E	; 14
+  9c:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+  a0:	08 95       	ret
+
+000000a2 <USART_Transmit>:
+}
+void USART_Transmit (char* data)
+{
+	/* Wait for empty transmit buffer */
+	while ( !( UCSR0A & (1<<UDRE0)) );
+  a2:	e0 ec       	ldi	r30, 0xC0	; 192
+  a4:	f0 e0       	ldi	r31, 0x00	; 0
+  a6:	90 81       	ld	r25, Z
+  a8:	95 ff       	sbrs	r25, 5
+  aa:	fd cf       	rjmp	.-6      	; 0xa6 <USART_Transmit+0x4>
+	/* Put data into buffer, sends the data */
+	UDR0 = data;
+  ac:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+  b0:	08 95       	ret
+
+000000b2 <main>:
+
+uint16_t adc_result0;
+
+int main(void)
+{
+	USART_Init(MYUBRR);
+  b2:	83 e3       	ldi	r24, 0x33	; 51
+  b4:	90 e0       	ldi	r25, 0x00	; 0
+  b6:	ea df       	rcall	.-44     	; 0x8c <USART_Init>
+	adc_init();
+  b8:	ce df       	rcall	.-100    	; 0x56 <adc_init>
+
+    while (1) 
+    {
+		adc_result0 = adc_read(0); 
+  ba:	80 e0       	ldi	r24, 0x00	; 0
+  bc:	d3 df       	rcall	.-90     	; 0x64 <adc_read>
+  be:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <adc_result0+0x1>
+  c2:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <adc_result0>
+		USART_Transmit(adc_result0);
+  c6:	ed df       	rcall	.-38     	; 0xa2 <USART_Transmit>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  c8:	2f e7       	ldi	r18, 0x7F	; 127
+  ca:	88 e3       	ldi	r24, 0x38	; 56
+  cc:	91 e0       	ldi	r25, 0x01	; 1
+  ce:	21 50       	subi	r18, 0x01	; 1
+  d0:	80 40       	sbci	r24, 0x00	; 0
+  d2:	90 40       	sbci	r25, 0x00	; 0
+  d4:	e1 f7       	brne	.-8      	; 0xce <main+0x1c>
+  d6:	00 c0       	rjmp	.+0      	; 0xd8 <main+0x26>
+  d8:	00 00       	nop
+  da:	ef cf       	rjmp	.-34     	; 0xba <main+0x8>
+
+000000dc <_exit>:
+  dc:	f8 94       	cli
+
+000000de <__stop_program>:
+  de:	ff cf       	rjmp	.-2      	; 0xde <__stop_program>
